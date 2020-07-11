@@ -8,14 +8,20 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'NLKNguyen/papercolor-theme'
 
-Plug 'davidhalter/jedi-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
 
-let g:airline_theme='papercolor'  
+nmap <C-n> :NERDTreeToggle<CR>
+"CTRL + /
+vmap <C-_> <plug>NERDCommenterToggle
+nmap <C-_> <plug>NERDCommenterToggle
 
-set runtimepath^=~/.config/nvim/bundle/ctrlp.vim
-
+let g:airline_theme='papercolor'
 
 set t_Co=256   " This is may or may not needed.
 
@@ -41,3 +47,13 @@ autocmd FileType c setlocal noexpandtab shiftwidth=2
 autocmd FileType h setlocal noexpandtab shiftwidth=2
 autocmd FileType js setlocal noexpandtab shiftwidth=2
 autocmd FileType py setlocal noexpandtab shiftwidth=4
+
+
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-pairs',
+  \ 'coc-json',
+  \ 'coc-python',
+  \ 'coc-clangd',
+  \ 'coc-jedi'
+  \ ]
