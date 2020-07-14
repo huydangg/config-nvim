@@ -15,6 +15,11 @@ Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
 
+" Map jk to Escape because it's too far away
+inoremap jk <Esc>
+
+
+let NERDTreeIgnore = ['__pycache__', 'node_modules']
 nmap <C-n> :NERDTreeToggle<CR>
 "CTRL + /
 vmap <C-_> <plug>NERDCommenterToggle
@@ -47,14 +52,15 @@ autocmd FileType h setlocal noexpandtab shiftwidth=2
 autocmd FileType js setlocal noexpandtab shiftwidth=2
 autocmd FileType py setlocal noexpandtab shiftwidth=4
 
-
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-pairs',
   \ 'coc-json',
   \ 'coc-python',
   \ 'coc-clangd',
-  \ 'coc-jedi'
+  \ 'coc-html',
+  \ 'coc-tsserver',
+  \ 'coc-css',
   \ ]
 
  " TextEdit might fail if hidden is not set.
@@ -63,6 +69,9 @@ set hidden
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
+
+" Use system clipboard
+set clipboard+=unnamedplus
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -134,3 +143,4 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <F2> <Plug>(coc-rename)
+nmap <C-[> :CocCommand python.setInterpreter<CR>
