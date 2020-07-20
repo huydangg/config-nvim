@@ -10,6 +10,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 Plug 'scrooloose/nerdcommenter'
 
@@ -19,7 +20,7 @@ call plug#end()
 inoremap jk <Esc>
 
 
-let NERDTreeIgnore = ['__pycache__', 'node_modules']
+let NERDTreeIgnore = ['__pycache__', 'node_modules', '*.pyc', '*.o']
 nmap <C-n> :NERDTreeToggle<CR>
 "CTRL + /
 vmap <C-_> <plug>NERDCommenterToggle
@@ -144,3 +145,26 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <F2> <Plug>(coc-rename)
 nmap <C-[> :CocCommand python.setInterpreter<CR>
+" fzf.vim {{{
+"Need to install https://github.com/sharkdp/fd to using this command.
+let $FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l --hidden --follow --exclude .git --exclude node_modules --exclude '*.pyc' --exclude '*.o'"
+let g:fzf_tags_command = 'ctags -R'
+let g:fzf_preview_window = 'down:1'
+let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.6 } }
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'below split',
+  \ 'ctrl-v': 'vsplit'
+  \ }
+
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> ++ :Files<CR>
+
+"Using the silver the_silver_searcher
+nnoremap <silent> ag :Ag<CR>
+
+"}}}
