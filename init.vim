@@ -1,19 +1,13 @@
 call plug#begin()
-
+Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
-
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'NLKNguyen/papercolor-theme'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
 Plug 'scrooloose/nerdcommenter'
-
 call plug#end()
 
 " Map jk to Escape because it's too far away
