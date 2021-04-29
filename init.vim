@@ -3,11 +3,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
+Plug 'fatih/vim-go',
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 call plug#end()
 
 " Map jk to Escape because it's too far away
@@ -20,27 +21,14 @@ nmap <C-n> :NERDTreeToggle<CR>
 vmap <C-_> <plug>NERDCommenterToggle
 nmap <C-_> <plug>NERDCommenterToggle
 
-let g:airline_theme='papercolor'
 
+syntax on
 set t_Co=256   " This is may or may not needed.
 
-set background=light
+"set background=light
 
-colorscheme PaperColor
-
-let g:PaperColor_Theme_Options = {
-  \   'language': {
-  \     'python': {
-  \       'highlight_builtins' : 1
-  \     },
-  \     'cpp': {
-  \       'highlight_standard_library': 1
-  \     },
-  \     'c': {
-  \       'highlight_builtins' : 1
-  \     }
-  \   }
-  \ }
+colorscheme onehalflight
+let g:airline_theme='onehalfdark'
 
 autocmd FileType c setlocal noexpandtab shiftwidth=2
 autocmd FileType h setlocal noexpandtab shiftwidth=2
@@ -190,7 +178,7 @@ nmap <F2> <Plug>(coc-rename)
 nmap <C-[> :CocCommand python.setInterpreter<CR>
 " fzf.vim {{{
 "Need to install https://github.com/sharkdp/fd to using this command.
-let $FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l --hidden --follow --exclude .git --exclude node_modules --exclude '*.pyc' --exclude '*.o'"
+let $FZF_DEFAULT_COMMAND=""
 let g:fzf_tags_command = 'ctags -R'
 let g:fzf_preview_window = 'down:1'
 let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.6 } }
